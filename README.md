@@ -4,6 +4,10 @@ Get you up and running with the [Geogram](https://github.com/BrunoLevy/geogram) 
 
 [![Maintenance Level: Inactively Maintained](https://badgen.net/badge/Maintenance%20Level/Inactively%20Maintained?color=a4a61d)](https://gist.github.com/cheerfulstoic/d107229326a01ff0f333a1d3476e068d)
 
+CLI ([apps/cli.cpp](./apps/cli.cpp)) | GUI ([apps/gui.cpp](./apps/gui.cpp))
+:-:|:-:
+![](./images/cli.png)|![](./images/gui.png)
+
 ## Requirements
 
 - [CMake](https://cmake.org/)
@@ -34,7 +38,6 @@ cd ../..
 See https://git-scm.com/book/en/v2/Git-Tools-Submodules#_cloning_submodules
 
 </details>
-<br/>
 
 **2. Create a build directory**
 
@@ -62,7 +65,6 @@ make
 Better: create a build folder for each build type, like `build_debug/` & `build_release/`, and update the [.gitignore](.gitignore)
 
 </details>
-<br/>
 
 <details>
 <summary>To use <a href="https://ninja-build.org/">Ninja</a> instead of Make</summary>
@@ -74,7 +76,6 @@ ninja
 ```
 
 </details>
-<br/>
 
 **4. Execute**
 
@@ -121,7 +122,6 @@ int main(int argc, char** argv) {
 ```
 
 </details>
-<br/>
 
 <details>
 <summary><b>2. Basic CMakeLists.txt</b></summary>
@@ -145,7 +145,6 @@ add_executable(cli apps/cli.cpp)
 See the beginning of the README on how to build and run the program.
 
 </details>
-<br/>
 
 <details>
 <summary><b>3. Add Geogram as submodule</b></summary>
@@ -161,7 +160,6 @@ git checkout main
 ```
 
 </details>
-<br/>
 
 <details>
 <summary><b>4. Update CMakeLists.txt for Geogram</b></summary>
@@ -203,7 +201,6 @@ git checkout main
 ```
 
 </details>
-<br/>
 
 <details>
 <summary><b>5. Use the Geogram library inside the executable</b></summary>
@@ -213,7 +210,6 @@ Replace the content of `apps/cli.cpp` with [this file](./apps/cli.cpp). Note the
 Rebuild the project.
 
 </details>
-<br/>
 
 <details>
 <summary><b>6. Create a GUI app</b></summary>
@@ -223,7 +219,6 @@ Rebuild the project.
 - Create `apps/gui.cpp` and paste the content of [this file](./apps/gui.cpp)
 
 </details>
-<br/>
 
 <details>
 <summary><b>7. Update CMakeLists.txt for the new executable</b></summary>
@@ -275,7 +270,6 @@ Rebuild the project.
 Then rebuild the project.
 
 </details>
-<br/>
 
 <!-- **8. Create shared C++ code**
 **9. Update CMakeLists.txt for the shared C++ code** -->
