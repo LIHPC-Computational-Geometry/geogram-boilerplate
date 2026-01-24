@@ -10,8 +10,10 @@ CLI ([apps/cli.cpp](./apps/cli.cpp)) | GUI ([apps/gui.cpp](./apps/gui.cpp))
 
 ## Requirements
 
+- [Git](https://git-scm.com/)
 - [CMake](https://cmake.org/)
 - a C++ 20 compiler discoverable by CMake
+- potential platform-specific requirements inherited from Geogram: [Linux](https://github.com/BrunoLevy/geogram/wiki/compiling_Linux#prerequisites), [Windows](https://github.com/BrunoLevy/geogram/wiki/compiling_Windows#prerequisites), [macOS](https://github.com/BrunoLevy/geogram/wiki/compiling_MacOS#prerequisites), [Emscripten](https://github.com/BrunoLevy/geogram/wiki/compiling_Emscripten#prerequisites)
 
 ## Clone, build & run
 
