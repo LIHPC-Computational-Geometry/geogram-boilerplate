@@ -91,9 +91,10 @@ ninja
 
 ## Customize the project
 
+- [ ] Change the [LICENSE](LICENSE)
 - [ ] Rename the project in [CMakeLists.txt](CMakeLists.txt) (the `project()` directive)
 - [ ] Rename the executables. To do so, you have to rename the `apps/*.cpp` files, and update accordingly [CMakeLists.txt](CMakeLists.txt) directives `add_executable()`, `target_include_directories()` and `target_link_libraries()`. To rename the GUI window title, change the value passed to the `SimpleMeshApplication` constructor.
-- [ ] Change the [LICENSE](LICENSE)
+- [ ] Delete the [images/](images/) folder
 - [ ] Overwrite this README
 
 ## Update Geogram
