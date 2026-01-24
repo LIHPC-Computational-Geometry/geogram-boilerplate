@@ -1,9 +1,11 @@
 // An application based on Geogram's SimpleMeshApplication
 // see https://github.com/BrunoLevy/geogram/wiki/Applications
 
-#include <geogram/basic/file_system.h>
-
 #include "MyGui.h"
+#include "shared.h"
+
+#include <geogram/basic/file_system.h> // FileSystem::extension()
+#include <geogram/basic/numeric.h> // for GEO::Numeric::float32 and Numeric::random_float32()
 
 MyGui::MyGui(const std::string &name) :
     SimpleMeshApplication(name),
@@ -29,6 +31,8 @@ void MyGui::draw_scene() {
 
 // The right panel
 void MyGui::draw_object_properties() {
+    SimpleMeshApplication::draw_object_properties();
+    ImGui::SeparatorText("Added");
     ImGui::TextUnformatted("Hello world!");
     // see the ImGui demo window for all the controls & widgets possible
 }
@@ -89,5 +93,26 @@ bool MyGui::save(const std::string& filename) {
     else {
         // default behavior
         return SimpleMeshApplication::save(filename);
+    }
+}
+
+void MyGui::geogram_initialize(int argc, char** argv) {
+    SimpleMeshApplication::geogram_initialize(argc,argv);
+    if (filenames().empty()) { // if no filename were given through the command line
+        Logger::out("Custom feat.") << "Creating cube mesh..." << std::endl;
+        create_cube_mesh(mesh_);
+        mesh_gfx_.set_mesh(&mesh_);
+        // create an attribute, per-vertex here, with random values in [0,1]
+        Attribute<Numeric::float32> my_custom_attribute(mesh_.vertices.attributes(),"my_custom_attribute");
+        for(index_t vertex_index = 0; vertex_index < mesh_.vertices.nb(); vertex_index++) {
+            my_custom_attribute[vertex_index] = Numeric::random_float32();
+        }
+        show_attributes_ = true;
+        current_colormap_index_ = 2; // an index in SimpleApplication::colormaps_, see SimpleApplication::init_colormaps()
+        attribute_subelements_ = MESH_VERTICES;
+        attribute_name_ = "my_custom_attribute";
+        attribute_ = "vertices.my_custom_attribute";
+        attribute_min_ = 0.0f;
+        attribute_max_ = 1.0f;
     }
 }

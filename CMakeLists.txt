@@ -13,6 +13,7 @@ set(GEOGRAM_SOURCE_DIR "${CMAKE_SOURCE_DIR}/ext/geogram/" CACHE PATH "full path 
 
 set(
   SRCFILES
+  src/shared.cpp
   src/MyGui.cpp
 )
 

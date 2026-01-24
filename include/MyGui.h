@@ -1,6 +1,7 @@
 #pragma once
 
 #include <geogram_gfx/gui/simple_mesh_application.h>
+
 #include <string>
 
 using namespace GEO;
@@ -17,6 +18,7 @@ public:
     bool load(const std::string& filename) override;
     std::string supported_write_file_extensions() override;
     bool save(const std::string& filename) override;
+    void geogram_initialize(int argc, char** argv) override;
 
 protected:
     bool show_ImGui_demo_window_; // true if the ImGui demo window is currently displayed

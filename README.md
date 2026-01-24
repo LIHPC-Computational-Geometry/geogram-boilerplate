@@ -162,7 +162,7 @@ git checkout main
 </details>
 
 <details>
-<summary><b>4. Update CMakeLists.txt for Geogram</b></summary>
+<summary><b>4. Update CMakeLists.txt for Geogram and a static library</b></summary>
 
 ```diff
  cmake_minimum_required(VERSION 3.5)
@@ -178,6 +178,11 @@ git checkout main
 +set(GEOGRAM_LIB_ONLY ON)
 +set(GEOGRAM_SOURCE_DIR "${CMAKE_SOURCE_DIR}/ext/geogram/" CACHE PATH "full path to the Geogram (or Vorpaline) installation")
 
++set(
++  SRCFILES
++  src/shared.cpp
++)
+
 +#################
 +# DEPENDENCIES
 +#################
@@ -192,12 +197,21 @@ git checkout main
 +  ${GLFW_LIBRARIES}
 +)
 
++#################
++# LIBRARY
++#################
+
++add_library(lib STATIC ${SRCFILES})
++target_include_directories(lib PRIVATE include)
++target_link_libraries(lib PRIVATE ${EXTERNAL_LIBS})
+
  #################
  # EXECUTABLES
  #################
 
  add_executable(cli apps/cli.cpp)
-+target_link_libraries(cli PRIVATE ${EXTERNAL_LIBS})
++target_include_directories(cli PRIVATE include)
++target_link_libraries(cli PRIVATE lib ${EXTERNAL_LIBS})
 ```
 
 </details>
@@ -205,7 +219,9 @@ git checkout main
 <details>
 <summary><b>5. Use the Geogram library inside the executable</b></summary>
 
-Replace the content of `apps/cli.cpp` with [this file](./apps/cli.cpp). Note the `#include <geogram/*>` directives.
+- Replace the content of `apps/cli.cpp` with [this file](./apps/cli.cpp). Note the `#include <geogram/*>` directives.
+- Create `include/shared.h` and paste the content of [this file](./include/shared.h)
+- Create `src/shared.cpp` and paste the content of [this file](./src/shared.cpp)
 
 Rebuild the project.
 
@@ -226,41 +242,21 @@ Rebuild the project.
 ```diff
  # [...]
 
-+set(
-+  SRCFILES
+ +set(
+   SRCFILES
+   src/shared.cpp
 +  src/MyGui.cpp
-+)
-
- #################
- # DEPENDENCIES
- #################
-
- # Geogram
- add_subdirectory(ext/geogram)
-
- set(
-   EXTERNAL_LIBS
-   geogram
-   geogram_gfx
-   ${GLFW_LIBRARIES}
  )
 
-+#################
-+# LIBRARY
-+#################
-
-+add_library(lib STATIC ${SRCFILES})
-+target_include_directories(lib PRIVATE include)
-+target_link_libraries(lib PRIVATE ${EXTERNAL_LIBS})
+ # [...]
 
  #################
  # EXECUTABLES
  #################
 
  add_executable(cli apps/cli.cpp)
-+target_include_directories(cli PRIVATE include)
--target_link_libraries(cli PRIVATE ${EXTERNAL_LIBS})
-+target_link_libraries(cli PRIVATE lib ${EXTERNAL_LIBS})
+ target_include_directories(cli PRIVATE include)
+ target_link_libraries(cli PRIVATE lib ${EXTERNAL_LIBS})
 
 +add_executable(gui apps/gui.cpp)
 +target_include_directories(gui PRIVATE include)
@@ -270,9 +266,6 @@ Rebuild the project.
 Then rebuild the project.
 
 </details>
-
-<!-- **8. Create shared C++ code**
-**9. Update CMakeLists.txt for the shared C++ code** -->
 
 ## Ressources
 
