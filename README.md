@@ -2,7 +2,7 @@
 
 Get you up and running with the [Geogram](https://github.com/BrunoLevy/geogram) library
 
-[![Maintenance Level: Inactively Maintained](https://badgen.net/badge/Maintenance%20Level/Inactively%20Maintained?color=a4a61d)](https://gist.github.com/cheerfulstoic/d107229326a01ff0f333a1d3476e068d)
+[![Maintenance Level: Abandoned](https://badgen.net/badge/Maintenance%20Level/Abandoned?color=fe7d37)](https://gist.github.com/cheerfulstoic/d107229326a01ff0f333a1d3476e068d)
 
 CLI ([apps/cli.cpp](./apps/cli.cpp)) | GUI ([apps/gui.cpp](./apps/gui.cpp))
 :-:|:-:
